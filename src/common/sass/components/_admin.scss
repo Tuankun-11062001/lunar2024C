@@ -63,6 +63,7 @@
         font-size: 2rem;
         color: #994c00;
       }
+
       .dragon_card {
         @include gridSystem($column: 5);
         margin-top: 1rem;
