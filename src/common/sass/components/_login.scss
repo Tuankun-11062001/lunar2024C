@@ -1,0 +1,65 @@
+.login {
+  position: relative;
+  &_form {
+    @include dynamicPositionAbsolute(
+      $top: 50%,
+      $left: 50%,
+      $transform: translate(-50%, -50%)
+    );
+
+    background: #fff;
+    padding: 2rem;
+    width: 40%;
+    border-radius: 0.5rem;
+    @include dynamicAlign($direction: column, $align: center);
+    .head {
+      @include dynamicAlign($align: center);
+      width: 100%;
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        color: #994c00;
+        width: 100%;
+      }
+      img {
+        margin-left: auto;
+        cursor: pointer;
+      }
+    }
+
+    .group {
+      @include dynamicAlign($direction: column);
+      width: 100%;
+      p {
+        font-size: 1.6rem;
+        color: gray;
+      }
+      input {
+        width: 100%;
+        padding: 1rem;
+        background: #fff;
+        color: #9e540a;
+        border-radius: 0.5rem;
+        font-size: 1.6rem;
+        border: 0.1rem solid gray;
+        &:focus {
+          outline: none;
+          border: 0.1rem solid #9e540a;
+        }
+      }
+    }
+
+    button {
+      padding: 1rem 2rem;
+      background: #994c00;
+      color: #fff;
+      border-radius: 0.5rem;
+      transition: 0.3s ease;
+      font-size: 1.6rem;
+      border: none;
+      &:hover {
+        background: #9e540a;
+      }
+    }
+  }
+}

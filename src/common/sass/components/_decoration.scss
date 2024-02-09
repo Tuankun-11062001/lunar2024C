@@ -1,0 +1,83 @@
+.decoration {
+  width: 100%;
+  height: 100dvh;
+  background-image: url("/background.png");
+  overflow: hidden;
+  position: relative;
+  .admin_button {
+    position: absolute;
+    right: 25rem;
+    top: 5rem;
+  }
+  .title {
+    @include dynamicPositionAbsolute(
+      $left: 50%,
+      $transform: translateX(-50%),
+      $z-index: 2
+    );
+    img {
+      width: 25rem;
+    }
+  }
+  .apricot {
+    @include dynamicPositionAbsolute($top: 0, $left: 0);
+    width: 30rem;
+  }
+  .lantern_right {
+    @include dynamicPositionAbsolute(
+      $top: 0,
+      $right: 0,
+      $transform: rotateZ(5deg)
+    );
+    transform-origin: top;
+    animation: animate 5s linear alternate-reverse infinite;
+    @keyframes animate {
+      from {
+        transform: rotateZ(5deg);
+      }
+      to {
+        transform: rotateZ(-5deg);
+      }
+    }
+  }
+
+  .lantern_left {
+    @include dynamicPositionAbsolute(
+      $top: 20rem,
+      $left: 10rem,
+      $transform: rotateZ(5deg)
+    );
+    transform-origin: top;
+    animation: animate 5s linear alternate-reverse infinite;
+    @keyframes animate {
+      from {
+        transform: rotateZ(5deg);
+      }
+      to {
+        transform: rotateZ(-5deg);
+      }
+    }
+  }
+  .lantern_left_2 {
+    @include dynamicPositionAbsolute(
+      $top: 8rem,
+      $left: 50rem,
+      $transform: rotateZ(5deg)
+    );
+    transform-origin: top;
+    animation: animate 5s linear alternate-reverse infinite;
+    @keyframes animate {
+      from {
+        transform: rotateZ(5deg);
+      }
+      to {
+        transform: rotateZ(-5deg);
+      }
+    }
+  }
+  .cloud {
+    position: absolute;
+    bottom: 5rem;
+    right: 10rem;
+  }
+}

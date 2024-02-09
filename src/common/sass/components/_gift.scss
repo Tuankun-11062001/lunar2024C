@@ -1,0 +1,500 @@
+.gift {
+  position: relative;
+  .wish_first {
+    transition: all 1s ease;
+    img {
+      width: 45rem;
+      height: 75rem;
+      @include xl {
+        width: 100%;
+        // height: 100%;
+      }
+    }
+
+    &.fade {
+      opacity: 0;
+    }
+    @include dynamicPositionAbsolute(
+      $top: 55%,
+      $left: 50%,
+      $transform: translate(-50%, -50%)
+    );
+    .content {
+      position: absolute;
+      top: 0;
+      padding-top: 5rem;
+      padding-inline: 4rem;
+      width: 100%;
+      @include dynamicAlign($align: center, $direction: column);
+      @include xl {
+        padding-top: 5rem;
+        padding-inline: 10rem;
+      }
+
+      h2 {
+        @include textGradient($font_size: 2.5rem);
+        @include xl {
+          font-size: 3rem;
+        }
+      }
+      h1 {
+        @include textGradient($font_size: 5rem);
+        @include xl {
+          font-size: 7rem;
+        }
+      }
+      .content_first {
+        opacity: 1;
+        transition: all 1s ease;
+        ol {
+          font-size: 2rem;
+          @include dynamicAlign($direction: column, $gap: 2rem);
+          color: #9e5700;
+        }
+
+        button {
+          margin-top: 5rem;
+          background: transparent;
+          font-size: 2rem;
+          color: #9e5700;
+          border: none;
+        }
+        &.fade {
+          opacity: 0;
+        }
+      }
+      .content_second {
+        @include dynamicAlign($direction: column, $gap: 2rem, $align: center);
+        animation: animateContent 1s ease;
+        @keyframes animateContent {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        p {
+          font-size: 2rem;
+          &:first-child {
+            margin-top: 5rem;
+          }
+          color: #9e5700;
+          text-align: center;
+          @include xl {
+            font-size: 2.5rem;
+            &:first-child {
+              margin-top: unset;
+            }
+          }
+        }
+        button {
+          margin-top: 5rem;
+          background: transparent;
+          font-size: 2rem;
+          color: #9e5700;
+          border: none;
+        }
+      }
+    }
+  }
+
+  .dragon_layout {
+    animation: animateDragonLayout 1s linear;
+    @keyframes animateDragonLayout {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @include dynamicPositionAbsolute(
+      $top: 55%,
+      $left: 50%,
+      $transform: translate(-50%, -50%)
+    );
+    @include dynamicAlign($gap: 5rem);
+    .dragons {
+      position: relative;
+      img {
+        width: 47rem;
+        height: 70rem;
+
+        @include xl {
+          width: 100rem;
+          height: 60rem;
+        }
+      }
+      .content {
+        @include dynamicPositionAbsolute($top: 5rem, $left: 5rem, $right: 5rem);
+        .rank_mobile {
+          animation: animateRank 1s linear;
+          @keyframes animateRank {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+          .list_user {
+            @include dynamicAlign($direction: column);
+            width: 100%;
+            div {
+              width: 1005;
+              @include dynamicAlign($justify: space-between);
+              font-size: 1.6rem;
+            }
+          }
+        }
+        .content_dragon_list {
+          animation: animatDragonList 1s linear;
+          @keyframes animatDragonList {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+        }
+        h1 {
+          @include textGradient($font_size: 3rem);
+          margin-bottom: 2rem;
+        }
+        height: 50rem;
+        overflow: auto;
+
+        .list_dragon {
+          @include gridSystem($column: 4, $gap: 2rem);
+
+          overflow: auto;
+          height: max-content;
+          @include xl {
+            // height: 46rem;
+            // height: max-content;
+            @include gridSystem($column: 10, $gap: 3rem);
+          }
+          .img_user {
+            width: 6rem;
+            height: 6rem;
+            object-fit: contain;
+          }
+          div {
+            cursor: pointer;
+            height: max-content;
+            img {
+              width: 6rem;
+              height: 6rem;
+              object-fit: contain;
+              transform-origin: center;
+              animation: animateEgg 4s linear alternate-reverse infinite;
+              pointer-events: none;
+              @keyframes animateEgg {
+                from {
+                  transform: rotateZ(5deg);
+                }
+                to {
+                  transform: rotateZ(-5deg);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .btn_rank {
+      position: absolute;
+      right: 0;
+      top: -5rem;
+      @include xl {
+        display: none;
+      }
+    }
+    .rank {
+      position: relative;
+      display: none;
+      @include xl {
+        display: block;
+      }
+      animation: animateRank 1s linear;
+      @keyframes animateRank {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      img {
+        width: 40rem;
+        height: 60rem;
+      }
+
+      .content {
+        @include dynamicPositionAbsolute($top: 3rem);
+        padding-inline: 3rem;
+        width: 100%;
+        font-size: 1.6rem;
+        h1 {
+          text-align: center;
+          font-size: 3rem;
+          margin-bottom: 2rem;
+          background: -webkit-linear-gradient(30deg, #ffb43c, #994c00);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .list_user {
+          @include dynamicAlign($direction: column, $gap: 2rem);
+          width: 100%;
+          color: #994c00;
+          font-size: 1.6rem;
+          div {
+            width: 100%;
+            @include dynamicAlign();
+            p:last-child {
+              margin-left: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.show_dragon {
+  animation: animateOverlay 1s linear;
+  @keyframes animateOverlay {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .overlay {
+    width: 100%;
+    height: 100%;
+  }
+  .bg_content {
+    width: 46rem;
+    height: 58rem;
+    @include xl {
+      width: 100%;
+    }
+  }
+
+  .content {
+    @include dynamicPositionAbsolute(
+      $top: 55%,
+      $left: 50%,
+      $transform: translate(-50%, -50%)
+    );
+    .content_dragon {
+      @include dynamicPositionAbsolute(
+        $top: 5rem,
+        $left: 50%,
+        $transform: translateX(-50%)
+      );
+      @include dynamicAlign($direction: column, $align: center);
+      h1 {
+        @include textGradient($font_size: 2.5rem);
+        margin-bottom: 2rem;
+        @include xl {
+          font-size: 3rem;
+        }
+      }
+      p {
+        font-size: 2rem;
+        color: #994c00;
+        text-align: center;
+        line-height: 3rem;
+        @include xl {
+          font-size: 2.5rem;
+          line-height: 3rem;
+        }
+      }
+      .price {
+        margin-bottom: 1rem;
+        @include textGradient($font_size: 4rem);
+        @include xl {
+          font-size: 5rem;
+          margin-bottom: 2rem;
+        }
+      }
+      img {
+        width: 15rem;
+        @include xl {
+          width: 20rem;
+        }
+      }
+      button {
+        padding: 1rem 2rem;
+        background: #994c00;
+        color: #fff;
+        border-radius: 0.5rem;
+        transition: 0.3s ease;
+        font-size: 1.6rem;
+        border: none;
+        &:hover {
+          background: #9e540a;
+        }
+      }
+    }
+
+    .content_info {
+      @include dynamicPositionAbsolute(
+        $top: 0,
+        $left: 50%,
+        $transform: translateX(-50%)
+      );
+      padding: 2rem;
+      width: 100%;
+      .title {
+        margin-bottom: 2rem;
+        @include textGradient($font_size: 3rem);
+      }
+
+      .dragon_info {
+        @include dynamicAlign(
+          $gap: 2rem,
+          $align: center,
+          $justify: space-between
+        );
+        margin-bottom: 2rem;
+        img {
+          width: 4rem;
+        }
+        h2 {
+          font-size: 2rem;
+          color: #994c00;
+        }
+        h1 {
+          font-size: 2.5rem;
+          color: #994c00;
+        }
+        @include xl {
+          display: none;
+        }
+      }
+
+      .content_layout {
+        @include dynamicAlign($direction: column);
+        @include xl {
+          @include dynamicAlign($gap: 3rem);
+        }
+        width: 100%;
+        .form {
+          @include dynamicAlign($gap: 2rem, $direction: column);
+          flex: 1;
+          font-size: 1.6rem;
+          input {
+            width: 100%;
+            padding: 1rem;
+            background: #fff;
+            color: #994c00;
+            border-radius: 0.5rem;
+            font-size: 1.6rem;
+            border: none;
+            border-bottom: 2px solid transparent;
+            &:focus {
+              outline: none;
+              border-bottom: 2px solid #9e540a;
+            }
+          }
+          textarea {
+            width: 100%;
+            height: 10rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 1.6rem;
+            resize: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: #994c00;
+            &:focus {
+              outline: none;
+              border-bottom: 2px solid #9e540a;
+            }
+          }
+          div {
+            @include dynamicAlign($gap: 2rem);
+            width: 100%;
+            a {
+              display: block;
+              background: #994c00;
+              color: #fff;
+              padding: 1rem 3rem;
+              font-size: 1.6rem;
+              text-decoration: none;
+              width: 20rem;
+              text-align: center;
+              border-radius: 0.5rem;
+            }
+          }
+          p {
+            font-size: 1.6rem;
+            color: gray;
+            line-height: 2rem;
+            span {
+              color: #994c00;
+            }
+          }
+
+          button {
+            padding: 1rem 2rem;
+            background: #994c00;
+            color: #fff;
+            border-radius: 0.5rem;
+            transition: 0.3s ease;
+            font-size: 1.6rem;
+            border: none;
+            &:hover {
+              background: #9e540a;
+            }
+          }
+        }
+        .dragon {
+          display: none;
+          @include xl {
+            flex: 0.7;
+            @include dynamicAlign(
+              $direction: column,
+              $gap: 2rem,
+              $align: center
+            );
+          }
+
+          h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: -webkit-linear-gradient(30deg, #ffb43c, #994c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          img {
+            width: 20rem;
+            object-fit: contain;
+          }
+          h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: -webkit-linear-gradient(30deg, #ffb43c, #994c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

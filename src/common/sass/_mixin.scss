@@ -1,0 +1,45 @@
+@mixin dynamicAlign(
+  $justify: flex-start,
+  $align: flex-start,
+  $gap: 1rem,
+  $direction: row,
+  $wrap: no-wrap
+) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+@mixin dynamicPositionAbsolute(
+  $top: unset,
+  $left: unset,
+  $right: unset,
+  $bottom: unset,
+  $transform: unset,
+  $z-index: unset
+) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  right: $right;
+  z-index: $z-index;
+  transform: $transform;
+}
+
+@mixin gridSystem($column: 5, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($column, 1fr);
+  grid-gap: $gap;
+}
+
+@mixin textGradient($font_size: 2rem) {
+  text-align: center;
+  font-size: $font_size;
+  background: -webkit-linear-gradient(30deg, #ffb43c, #994c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
