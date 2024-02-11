@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import intro from "../images/intro.mp4";
+import xuanIntro from "../images/xuan_introl.mp4";
 import { useNavigate } from "react-router-dom";
 import touch from "../images/touch.gif";
 
@@ -20,9 +20,9 @@ const Home = () => {
     <div className="home">
       <div className="touch" onClick={enableAutoPlay}>
         <img src={touch} />
-        Touch me, please
+        Chạm vào tớ nì ! Hơ hơ
       </div>
-      <video src={intro}></video>
+      <video src={xuanIntro}></video>
     </div>
   );
 };

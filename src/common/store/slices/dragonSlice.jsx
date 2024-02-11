@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   addDragonAPI,
+  deleteDragonAPI,
   editDragonAPI,
   findDragonAPI,
   getDragonAPI,
@@ -40,6 +41,13 @@ export const getRankThunk = createAsyncThunk("getRankThunk", async () => {
   const res = await getRankAPI();
   return res.data;
 });
+
+
+export const deleteDragonThunk = createAsyncThunk('deleteDragonThunk',async (id) => {
+  const res = await deleteDragonAPI(id)
+  return res.data;
+})
+
 
 const DragonSlices = createSlice({
   name: "DragonSlices",
@@ -108,6 +116,17 @@ const DragonSlices = createSlice({
         state.rank = action.payload;
       })
       .addCase(getRankThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteDragonThunk.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteDragonThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.dragons = action.payload;
+      })
+      .addCase(deleteDragonThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

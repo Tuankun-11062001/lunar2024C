@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getDragonAPI = async () => {
   try {
-    const res = await axios.get(`${import.meta.env.VITE_API}/dragon`);
+    const res = await axios.get(`https://lunar2024-s.vercel.app/dragon`);
     return res.data;
   } catch (error) {
     return error.response.data;
@@ -12,7 +12,7 @@ const getDragonAPI = async () => {
 const addDragonAPI = async (data) => {
   try {
     const res = await axios.post(
-      `${import.meta.env.VITE_API}/dragon/add`,
+      `https://lunar2024-s.vercel.app/dragon/add`,
       data
     );
     return res.data;
@@ -24,7 +24,7 @@ const addDragonAPI = async (data) => {
 const findDragonAPI = async (id) => {
   try {
     const res = await axios.get(
-      `${import.meta.env.VITE_API}/dragon/find/${id}`
+      `https://lunar2024-s.vercel.app/dragon/find/${id}`
     );
     return res.data;
   } catch (error) {
@@ -35,7 +35,7 @@ const findDragonAPI = async (id) => {
 const editDragonAPI = async (payload) => {
   try {
     const res = await axios.put(
-      `${import.meta.env.VITE_API}/dragon/edit/${payload._id}`,
+      `https://lunar2024-s.vercel.app/dragon/edit/${payload._id}`,
       payload
     );
     return res.data;
@@ -46,11 +46,21 @@ const editDragonAPI = async (payload) => {
 
 const getRankAPI = async () => {
   try {
-    const res = await axios.get(`${import.meta.env.VITE_API}/dragon/rank`);
+    const res = await axios.get(`https://lunar2024-s.vercel.app/dragon/rank`);
     return res.data;
   } catch (error) {
     return error.response.data;
   }
 };
 
-export { addDragonAPI, getDragonAPI, findDragonAPI, editDragonAPI, getRankAPI };
+
+const deleteDragonAPI = async (id) => {
+  try {
+    const res = await axios.delete(`https://lunar2024-s.vercel.app/dragon/delete/${id}`);
+    return res.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export { addDragonAPI, getDragonAPI, findDragonAPI, editDragonAPI, getRankAPI,deleteDragonAPI };

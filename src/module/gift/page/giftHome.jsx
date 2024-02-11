@@ -22,6 +22,9 @@ import {
   getDragonsThunk,
   getRankThunk,
 } from "../../../common/store/slices/dragonSlice";
+import Loading from "../../../common/page/loading";
+import rankImage from '../../../common/images/rank.svg';
+import closeIamge from '../../../common/images/close.svg'
 
 const GiftHome = () => {
   const dispatch = useDispatch();
@@ -29,7 +32,7 @@ const GiftHome = () => {
   const [wishLayout, setWishLayout] = useState(true);
   const [showDragon, setShowDragon] = useState(false);
   const eggs = [egg1, egg2, egg3, egg4];
-  const { dragons, dragon, rank } = useSelector((state) => state.dragon);
+  const { dragons, dragon, rank, loading } = useSelector((state) => state.dragon);
   const [showRank, setShowRank] = useState(false);
   useEffect(() => {
     dispatch(getDragonsThunk());
@@ -62,9 +65,6 @@ const GiftHome = () => {
 
   const handleRank = () => {
     setShowRank(!showRank);
-    const parent = document.querySelector(".content_dragon_list");
-    parent.classList.toggle("fade");
-    parent.addEventListener("transitionend", () => {});
   };
 
   return (
@@ -72,7 +72,6 @@ const GiftHome = () => {
       <Decoration />
       {wishLayout ? (
         <div className="wish_first">
-          <img src={backgroundContent} />
           <div className="content">
             <h2>Lời chúc năm mới!</h2>
             <h1>2024</h1>
@@ -125,7 +124,8 @@ const GiftHome = () => {
                   <div className="content">
                     <h1>Người may mắn</h1>
                     <div className="list_user">
-                      {rank?.map((user, indx) => (
+
+                      {loading ? <Loading/> : rank?.map((user, indx) => (
                         <div>
                           <p>{indx + 1}</p>
                           <p>{user.username}</p>
@@ -139,7 +139,7 @@ const GiftHome = () => {
                 <div className="content_dragon_list">
                   <h1>Chọn một bé rồng!</h1>
                   <div className="list_dragon">
-                    {dragons.map((dragon, index) => (
+                    {loading ? <Loading/> : dragons.map((dragon, index) => (
                       <>
                         {dragon.username ? (
                           <img src={hasUser} className="img_user" />
@@ -163,14 +163,15 @@ const GiftHome = () => {
             </div>
           </div>
           <button className="btn_rank" onClick={handleRank}>
-            Rank
+            {showRank ? <img src={closeIamge}/> : <img src={rankImage}/>}
+            
           </button>
           <div className="rank">
             <img src={backgroundContentVertical} />
             <div className="content">
               <h1>Người may mắn</h1>
               <div className="list_user">
-                {rank?.map((user, indx) => (
+                {loading ? <Loading/> : rank?.map((user, indx) => (
                   <div>
                     <p>{indx + 1}</p>
                     <p>{user.username}</p>
@@ -313,6 +314,8 @@ const ShowDragon = ({ close, data }) => {
             </div>
           </div>
         ) : (
+          <>
+          {data ? 
           <div className="content_dragon">
             <h1>Wow {data?.name}</h1>
             <p>{data?.wish}</p>
@@ -320,6 +323,8 @@ const ShowDragon = ({ close, data }) => {
             <h1 className="price">{data?.price}</h1>
             <button onClick={handleInfo}>Nhận tiền thui</button>
           </div>
+:<Loading/>}
+          </>
         )}
       </div>
     </div>

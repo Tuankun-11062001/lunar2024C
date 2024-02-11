@@ -5,21 +5,28 @@ import { useNavigate } from "react-router-dom";
 import { addDragonAPI } from "../../../common/api/dragon";
 import Decoration from "../../../common/components/decoration";
 import { useSelector, useDispatch } from "react-redux";
-import { addDragonsThunk } from "../../../common/store/slices/dragonSlice";
+import { addDragonsThunk, deleteDragonThunk, getDragonsThunk } from "../../../common/store/slices/dragonSlice";
+import Loading from "../../../common/page/loading";
 
 const AdminHome = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { dragons } = useSelector((state) => state.dragon);
+  const { dragons,loading } = useSelector((state) => state.dragon);
   useEffect(() => {
     // check user data
     const data = localStorage.getItem("dataAdmin");
-    if (data !== import.meta.env.VITE_USER) {
+    if (data !== 'luner2024') {
       navigate("/login");
       return;
     }
     return;
   }, []);
+
+  useEffect(() => {
+    if(dragons.length < 1){
+      dispatch(getDragonsThunk())
+    }
+  },[])
 
   const [dataDragon, setDataDragon] = useState({
     name: "",
@@ -35,6 +42,12 @@ const AdminHome = () => {
   const handleAdd = () => {
     dispatch(addDragonsThunk(dataDragon));
   };
+
+
+  const handleDelete = (id) => {
+    dispatch(deleteDragonThunk(id))
+  }
+
   console.log("dragons", dragons);
   return (
     <div className="admin">
@@ -84,13 +97,14 @@ const AdminHome = () => {
         </div>
         <div className="list_dragon">
           <h1>List Dragon</h1>
-          {dragons.map((dragon) => (
+          {loading ? <Loading/> : dragons?.map((dragon) => (
             <div className="dragon_card">
               <p>{dragon.name}</p>
               <p>{dragon.price}</p>
               <p>{dragon?.username}</p>
               <p>{dragon?.numberBank}</p>
               <p>{dragon?.detailBank}</p>
+              <button onClick={() => handleDelete(dragon._id)}>delete</button>
             </div>
           ))}
         </div>

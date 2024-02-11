@@ -16,7 +16,10 @@
       $z-index: 2
     );
     img {
-      width: 25rem;
+      width: 15rem;
+      @include xl{
+        width: 25rem;
+      }
     }
   }
   .apricot {
